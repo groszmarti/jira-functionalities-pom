@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 class LoginPageTest {
     private String path = Util.SRC;
     private WebDriver driver;
-    private WebDriverWait wait;
     private LoginPage loginPage;
+    private ProfilePage profilePage;
     private DashboardPage dashboardPage;
 
     @BeforeEach
@@ -28,7 +28,6 @@ class LoginPageTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         loginPage = new LoginPage(driver);
         //options.addArguments("--headless=new");
         driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
@@ -46,10 +45,12 @@ class LoginPageTest {
         loginPage.enterPassword(Util.VALID_PASSWORD);
         loginPage.clickLoginBtn();
         dashboardPage = new DashboardPage(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header-details-user-fullname']//img")));
-      //  wait.until(ExpectedConditions.visibilityOf(dashboardPage.getAvatarIcon()));
-        String userName = driver.findElement(By.xpath("//*[@id='header-details-user-fullname']")).getAttribute("data-username");
-        Assertions.assertTrue(userName.contains(Util.VALID_USERNAME));
-      //  Assertions.assertTrue(dashboardPage.getAvatarParentDataUsername().contains(Util.VALID_USERNAME));
+        dashboardPage.clickAvatarIcon();
+        Assertions.assertTrue(dashboardPage.getAvatarParentDataUsername().contains(Util.VALID_USERNAME));
+        dashboardPage.clickProfileMenuItem();
+        profilePage = new ProfilePage(driver);
+        Assertions.assertTrue(profilePage.getProfileUserName().contains(Util.VALID_USERNAME));
+        profilePage.clickAvatarIcon();
+        profilePage.clickLogoutMenuItem();
     }
 }

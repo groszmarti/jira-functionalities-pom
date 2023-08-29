@@ -1,6 +1,5 @@
 package com.codecool.PageFactory;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,48 +9,33 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class DashboardPage {
+public class ProfilePage {
     private WebDriver driver;
     private WebDriverWait wait;
+    @FindBy (xpath = "//*[@id='up-d-username']")
+    WebElement profileUserName;
+
     @FindBy(xpath = "//*[@id='header-details-user-fullname']//img")
     private WebElement avatarIcon;
+    @FindBy (xpath = "//*[@id='log_out']")
+    private WebElement logoutMenuItem;
 
-    @FindBy(xpath = "//*[@id='header-details-user-fullname']")
-    private WebElement avatarParent;
-
-    @FindBy(xpath = "//a[@id='view_profile']")
-    private WebElement profileMenuItem;
-
-
-    public DashboardPage(WebDriver driver) {
+    public ProfilePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getAvatarIcon() {
-        return avatarIcon;
+    public String getProfileUserName() {
+        return profileUserName.getText();
     }
-
-    public String getAvatarParentDataUsername() {
-        return avatarParent.getAttribute("data-username");
-    }
-
     public void clickAvatarIcon() {
         wait.until(ExpectedConditions.visibilityOf(avatarIcon));
         wait.until(ExpectedConditions.elementToBeClickable(avatarIcon));
         avatarIcon.click();
     }
-
-    public void clickProfileMenuItem() {
-        wait.until(ExpectedConditions.visibilityOf(profileMenuItem));
-        profileMenuItem.click();
-    }
-
-    public boolean isAvatarVisible() {
-        return avatarIcon.isDisplayed();
-    }
-    public String getLoggedUserName() {
-        return avatarParent.getAttribute("data-username");
+    public void clickLogoutMenuItem() {
+        wait.until(ExpectedConditions.visibilityOf(logoutMenuItem));
+        logoutMenuItem.click();
     }
 }
