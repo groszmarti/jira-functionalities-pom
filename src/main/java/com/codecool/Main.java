@@ -1,7 +1,6 @@
 package com.codecool;
 
 import com.codecool.PageFactory.LoginPage;
-import com.codecool.technical.SuccesfulLoginTechnical;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

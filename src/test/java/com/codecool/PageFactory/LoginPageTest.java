@@ -53,4 +53,11 @@ class LoginPageTest {
         profilePage.clickAvatarIcon();
         profilePage.clickLogoutMenuItem();
     }
+
+    @Test
+    public void unsuccessfulLoginShouldntWorkWithEmptyInputFields() {
+        loginPage.clickLoginBtn();
+        String expectedErrorMessage = "Sorry, your username and password are incorrect";
+        Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
+    }
 }
