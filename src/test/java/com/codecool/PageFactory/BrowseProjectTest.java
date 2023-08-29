@@ -39,7 +39,7 @@ public class BrowseProjectTest {
         loginPage.enterPassword(Util.VALID_PASSWORD);
         loginPage.clickLoginBtn();
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage = new DashboardPage(driver);
         dashboardPage.isAvatarVisible();
 
         driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
