@@ -55,8 +55,8 @@ public class DashboardPage {
         logoutMenuItem.click();
     }
 
-    public boolean isAvatarVisible() {
-        return avatarIcon.isDisplayed();
+    public void isAvatarVisible() {
+        wait.until(ExpectedConditions.visibilityOf(avatarIcon));
     }
 
     public String getLoggedUserName() {
