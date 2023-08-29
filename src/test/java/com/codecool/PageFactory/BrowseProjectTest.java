@@ -34,7 +34,7 @@ public class BrowseProjectTest {
     }
 
     @Test
-    public void browseExistingProjectShouldOpenProject() throws InterruptedException {
+    public void browseExistingProjectShouldOpenProject() {
         loginPage.enterUserName(Util.VALID_USERNAME);
         loginPage.enterPassword(Util.VALID_PASSWORD);
         loginPage.clickLoginBtn();
@@ -48,5 +48,21 @@ public class BrowseProjectTest {
         String expectedProjectKey = "MTP";
         Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
 
+    }
+
+    @Test
+    public void browseTOUCANProjectShouldOpenTOUCANProjectSummary() {
+        loginPage.enterUserName(Util.VALID_USERNAME);
+        loginPage.enterPassword(Util.VALID_PASSWORD);
+        loginPage.clickLoginBtn();
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.isAvatarVisible();
+
+        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/TOUCAN/summary");
+
+        ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+        String expectedProjectKey = "TOUCAN";
+        Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
     }
 }
