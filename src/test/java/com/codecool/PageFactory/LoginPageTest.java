@@ -4,13 +4,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 class LoginPageTest {
     private String path = Util.SRC;
@@ -22,11 +25,11 @@ class LoginPageTest {
     @BeforeEach
     void setUp() {
         System.setProperty("webdriver.chrome.driver", path);
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        loginPage = new LoginPage(driver);
         //options.addArguments("--headless=new");
         driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
         driver.manage().window().maximize();
@@ -43,6 +46,10 @@ class LoginPageTest {
         loginPage.enterPassword(Util.VALID_PASSWORD);
         loginPage.clickLoginBtn();
         dashboardPage = new DashboardPage(driver);
-        wait.until(ExpectedConditions.visibilityOf(dashboardPage.getAvatarIcon())).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header-details-user-fullname']//img")));
+      //  wait.until(ExpectedConditions.visibilityOf(dashboardPage.getAvatarIcon()));
+        String userName = driver.findElement(By.xpath("//*[@id='header-details-user-fullname']")).getAttribute("data-username");
+        Assertions.assertTrue(userName.contains(Util.VALID_USERNAME));
+      //  Assertions.assertTrue(dashboardPage.getAvatarParentDataUsername().contains(Util.VALID_USERNAME));
     }
 }
