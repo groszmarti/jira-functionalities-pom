@@ -25,6 +25,9 @@ public class LoginPage {
     private WebElement loginError;
 
 
+    @FindBy(xpath = "//div[@id='content']//p")
+    WebElement loginMessage;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -46,6 +49,11 @@ public class LoginPage {
     public boolean isCaptchaVisible() {
         return captcha.isDisplayed();
     }
+
+    public String getLoginMessage() {
+        return loginMessage.getText();
+    }
+
     public String getLoginErrorMessage() {
         wait.until(ExpectedConditions.visibilityOf(loginError));
         return loginError.getText();

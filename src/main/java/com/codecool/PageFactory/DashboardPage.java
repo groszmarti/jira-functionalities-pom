@@ -22,6 +22,8 @@ public class DashboardPage {
     @FindBy(xpath = "//a[@id='view_profile']")
     private WebElement profileMenuItem;
 
+    @FindBy(xpath = "//*[@id='log_out']")
+    private WebElement logoutMenuItem;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -48,9 +50,15 @@ public class DashboardPage {
         profileMenuItem.click();
     }
 
+    public void clickLogoutMenuItem() {
+        wait.until(ExpectedConditions.visibilityOf(logoutMenuItem));
+        logoutMenuItem.click();
+    }
+
     public boolean isAvatarVisible() {
         return avatarIcon.isDisplayed();
     }
+
     public String getLoggedUserName() {
         return avatarParent.getAttribute("data-username");
     }
