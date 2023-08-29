@@ -67,7 +67,7 @@ public class BrowseProjectTest {
     }
 
     @Test
-    public void browseTOUCANProjectShouldOpenCOALAProjectSummary() {
+    public void browseCOALAProjectShouldOpenCOALAProjectSummary() {
         loginPage.enterUserName(Util.VALID_USERNAME);
         loginPage.enterPassword(Util.VALID_PASSWORD);
         loginPage.clickLoginBtn();
@@ -79,6 +79,21 @@ public class BrowseProjectTest {
 
         ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
         String expectedProjectKey = "COALA";
+        Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
+    }
+    @Test
+    public void browseJETIProjectShouldOpenJETIProjectSummary() {
+        loginPage.enterUserName(Util.VALID_USERNAME);
+        loginPage.enterPassword(Util.VALID_PASSWORD);
+        loginPage.clickLoginBtn();
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.isAvatarVisible();
+
+        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/JETI/summary");
+
+        ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+        String expectedProjectKey = "JETI";
         Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
     }
 }
