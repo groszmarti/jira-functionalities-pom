@@ -24,6 +24,21 @@ public class DashboardPage {
 
     @FindBy(xpath = "//*[@id='log_out']")
     private WebElement logoutMenuItem;
+    @FindBy (xpath = "//a[@id='create_link']")
+    WebElement createBtn;
+    @FindBy (xpath = "//section[@id='create-issue-dialog']")
+    WebElement createIssueForm;
+    @FindBy (xpath = "//section[@id='create-issue-dialog']//h2")
+    WebElement createIssueHeader;
+    @FindBy(xpath = "//input[@id='project-field']")
+    WebElement projectInputField;
+    @FindBy(xpath = "//input[@id='summary']")
+    WebElement projectSummary;
+    @FindBy(xpath = "//input[@id='create-issue-submit']")
+    WebElement createissueSubmitBtn;
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/a")
+    WebElement popupWindow;
+
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -37,6 +52,34 @@ public class DashboardPage {
 
     public String getAvatarParentDataUsername() {
         return avatarParent.getAttribute("data-username");
+    }
+    public void clickCreateBtn() {
+        createBtn.click();
+    }
+
+    public void isCreateIssueFormVisible() {
+        wait.until(ExpectedConditions.visibilityOf(createIssueForm));
+    }
+    public String getCreateIssueFormHeaderText() {
+        return createIssueHeader.getText();
+    }
+    public void enterTextToProjectInputField(String text) {
+        projectInputField.sendKeys(text);
+    }
+    public void enterTextToProjectSummary(String text) {
+        wait.until(ExpectedConditions.visibilityOf(projectSummary));
+        projectSummary.sendKeys(text);
+    }
+    public void clickCreateIssueSubmitBtn() {
+        createissueSubmitBtn.click();
+    }
+    public void clickPopupWindow() {
+        wait.until(ExpectedConditions.visibilityOf(popupWindow));
+        popupWindow.click();
+    }
+    public String getPopupText() {
+        wait.until(ExpectedConditions.visibilityOf(popupWindow));
+        return popupWindow.getText();
     }
 
     public void clickAvatarIcon() {
