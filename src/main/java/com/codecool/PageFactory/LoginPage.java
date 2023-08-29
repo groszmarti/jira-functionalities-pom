@@ -19,8 +19,15 @@ public class LoginPage {
     private WebElement passwordInput;
     @FindBy(xpath = "//input[@id='login']")
     private WebElement loginBtn;
-    @FindBy(xpath = "//div[@id='captcha']")
+    @FindBy(xpath = "//*[@id='captcha']")
     private WebElement captcha;
+
+    public WebElement getCaptcha() {
+        wait.until(ExpectedConditions.visibilityOf(captcha));
+        System.out.println("ffhdghgdhghfhhjfhfhjfhj");
+        return captcha;
+    }
+
     @FindBy(xpath = "//div[@id='usernameerror']/p")
     private WebElement loginError;
 
@@ -47,6 +54,7 @@ public class LoginPage {
     }
 
     public boolean isCaptchaVisible() {
+        wait.until(ExpectedConditions.visibilityOf(captcha));
         return captcha.isDisplayed();
     }
 
@@ -57,5 +65,15 @@ public class LoginPage {
     public String getLoginErrorMessage() {
         wait.until(ExpectedConditions.visibilityOf(loginError));
         return loginError.getText();
+    }
+
+    public void clearPasswordInput() {
+        passwordInput.clear();
+    }
+
+    public void login(String username, String password) {
+        enterUserName(username);
+        enterPassword(password);
+        clickLoginBtn();
     }
 }

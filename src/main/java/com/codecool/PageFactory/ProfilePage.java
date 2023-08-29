@@ -30,12 +30,18 @@ public class ProfilePage {
         return profileUserName.getText();
     }
     public void clickAvatarIcon() {
-        wait.until(ExpectedConditions.visibilityOf(avatarIcon));
+      //  wait.until(ExpectedConditions.visibilityOf(avatarIcon));
         wait.until(ExpectedConditions.elementToBeClickable(avatarIcon));
         avatarIcon.click();
     }
     public void clickLogoutMenuItem() {
-        wait.until(ExpectedConditions.visibilityOf(logoutMenuItem));
+      //  wait.until(ExpectedConditions.visibilityOf(logoutMenuItem));
+        wait.until(ExpectedConditions.elementToBeClickable(logoutMenuItem));
         logoutMenuItem.click();
+    }
+
+    public void logOut() {
+        clickAvatarIcon();
+        clickLogoutMenuItem();
     }
 }

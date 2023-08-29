@@ -62,4 +62,9 @@ public class DashboardPage {
     public String getLoggedUserName() {
         return avatarParent.getAttribute("data-username");
     }
+
+    public void navigateToProfilePage() {
+        clickAvatarIcon();
+        clickProfileMenuItem();
+    }
 }
