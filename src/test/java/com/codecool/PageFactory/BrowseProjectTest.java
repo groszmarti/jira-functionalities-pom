@@ -65,4 +65,20 @@ public class BrowseProjectTest {
         String expectedProjectKey = "TOUCAN";
         Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
     }
+
+    @Test
+    public void browseTOUCANProjectShouldOpenCOALAProjectSummary() {
+        loginPage.enterUserName(Util.VALID_USERNAME);
+        loginPage.enterPassword(Util.VALID_PASSWORD);
+        loginPage.clickLoginBtn();
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.isAvatarVisible();
+
+        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/COALA/summary");
+
+        ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+        String expectedProjectKey = "COALA";
+        Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
+    }
 }
