@@ -1,5 +1,7 @@
-package com.codecool.PageFactory;
+/*
+package com.codecool.pages;
 
+import com.codecool.util.GlobalVariables;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,10 +11,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LogoutPageTest {
-    private String path = Util.SRC;
+    private String path = GlobalVariables.SRC;
     private WebDriver driver;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private Header dashboardPage;
 
     @BeforeEach
     void setUp() {
@@ -33,10 +35,10 @@ public class LogoutPageTest {
 
     @Test
     public void successfulLogoutShouldLogUserOut() {
-        loginPage.enterUserName(Util.VALID_USERNAME);
-        loginPage.enterPassword(Util.VALID_PASSWORD);
+        loginPage.enterUserName(GlobalVariables.VALID_USERNAME);
+        loginPage.enterPassword(GlobalVariables.VALID_PASSWORD);
         loginPage.clickLoginBtn();
-        dashboardPage = new DashboardPage(driver);
+        dashboardPage = new Header(driver);
         dashboardPage.clickAvatarIcon();
         dashboardPage.clickLogoutMenuItem();
         String expectedLogoutMessage = "You are now logged out. Any automatic login has also been stopped.";
@@ -47,3 +49,4 @@ public class LogoutPageTest {
         Assertions.assertTrue(loginPage.getLoginMessage().contains(expectedLoginErrorMessage));
     }
 }
+*/

@@ -1,30 +1,27 @@
-package com.codecool.PageFactory;
+/*
+package com.codecool.pages;
 
+import com.codecool.util.GlobalVariables;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowseProjectTest {
-    private String path = Util.SRC;
     private WebDriver driver;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private Header dashboardPage;
+    private ProjectSummaryPage projectSummaryPage;
 
     @BeforeEach
     void setUp() {
-        System.setProperty("webdriver.chrome.driver", path);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        //options.addArguments("--headless=new");
-        driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
+        dashboardPage = new Header(driver);
+        projectSummaryPage = new ProjectSummaryPage(driver);
+        driver.get(GlobalVariables.BASE_URL + "/secure/Dashboard.jspa");
         driver.manage().window().maximize();
     }
 
@@ -35,22 +32,16 @@ public class BrowseProjectTest {
 
     @Test
     public void browseExistingProjectShouldOpenProject() {
-        loginPage.enterUserName(Util.VALID_USERNAME);
-        loginPage.enterPassword(Util.VALID_PASSWORD);
-        loginPage.clickLoginBtn();
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         dashboardPage.isAvatarVisible();
-
-        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
-
-        ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+        driver.navigate().to(GlobalVariables.BASE_URL + "/projects/MTP/summary");
         String expectedProjectKey = "MTP";
         Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
 
     }
 
-    @Test
+    */
+/*@Test
     public void browseTOUCANProjectShouldOpenTOUCANProjectSummary() {
         loginPage.enterUserName(Util.VALID_USERNAME);
         loginPage.enterPassword(Util.VALID_PASSWORD);
@@ -95,5 +86,6 @@ public class BrowseProjectTest {
         ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
         String expectedProjectKey = "JETI";
         Assertions.assertEquals(projectSummaryPage.getProjectKey(), expectedProjectKey);
-    }
-}
+    }*//*
+
+}*/

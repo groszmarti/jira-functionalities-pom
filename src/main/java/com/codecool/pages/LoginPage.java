@@ -1,5 +1,6 @@
-package com.codecool.PageFactory;
+package com.codecool.pages;
 
+import com.codecool.util.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,9 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='login-form-username']")
     private WebElement userNameInput;
@@ -22,40 +21,32 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id='captcha']")
     private WebElement captcha;
 
-    public WebElement getCaptcha() {
-        wait.until(ExpectedConditions.visibilityOf(captcha));
-        System.out.println("ffhdghgdhghfhhjfhfhjfhj");
-        return captcha;
-    }
-
     @FindBy(xpath = "//div[@id='usernameerror']/p")
     private WebElement loginError;
-
 
     @FindBy(xpath = "//div[@id='content']//p")
     WebElement loginMessage;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
+    public LoginPage() {
+        super();
     }
 
-    public void enterUserName(String userName) {
+    private void enterUserName(String userName) {
         userNameInput.sendKeys(userName);
     }
 
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         passwordInput.sendKeys(password);
     }
 
-    public void clickLoginBtn() {
+    private void clickLoginBtn() {
         loginBtn.click();
     }
 
-    public boolean isCaptchaVisible() {
-        wait.until(ExpectedConditions.visibilityOf(captcha));
-        return captcha.isDisplayed();
+    public void login(String username, String password) {
+        enterUserName(username);
+        enterPassword(password);
+        clickLoginBtn();
     }
 
     public String getLoginMessage() {
@@ -67,13 +58,17 @@ public class LoginPage {
         return loginError.getText();
     }
 
-    public void clearPasswordInput() {
-        passwordInput.clear();
+    public boolean isCaptchaVisible() {
+        wait.until(ExpectedConditions.visibilityOf(captcha));
+        return captcha.isDisplayed();
     }
 
-    public void login(String username, String password) {
-        enterUserName(username);
-        enterPassword(password);
-        clickLoginBtn();
-    }
+/*    public WebElement getCaptcha() {
+        wait.until(ExpectedConditions.visibilityOf(captcha));
+        return captcha;
+    }*/
+
+   /* public void clearPasswordInput() {
+        passwordInput.clear();
+    }*/
 }

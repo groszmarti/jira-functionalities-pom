@@ -1,4 +1,4 @@
-package com.codecool.PageFactory;
+package com.codecool.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

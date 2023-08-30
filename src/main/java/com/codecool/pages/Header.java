@@ -1,17 +1,11 @@
-package com.codecool.PageFactory;
+package com.codecool.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+public class Header extends BasePage{
 
-public class DashboardPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
     @FindBy(xpath = "//*[@id='header-details-user-fullname']//img")
     private WebElement avatarIcon;
 
@@ -39,10 +33,8 @@ public class DashboardPage {
     WebElement popupWindow;
 
 
-    public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
+    public Header() {
+        super();
     }
 
     public WebElement getAvatarIcon() {

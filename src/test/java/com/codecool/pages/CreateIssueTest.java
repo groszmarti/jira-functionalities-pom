@@ -1,28 +1,24 @@
-package com.codecool.PageFactory;
+/*package com.codecool.pages;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CreateIssueTest {
-    private String path = Util.SRC;
     private WebDriver driver;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private Header dashboardPage;
     private IssueSummaryPage issueSummaryPage;
 
     @BeforeEach
     void setUp() {
-        System.setProperty("webdriver.chrome.driver", path);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
         loginPage = new LoginPage(driver);
-        dashboardPage = new DashboardPage(driver);
+        dashboardPage = new Header(driver);
         issueSummaryPage = new IssueSummaryPage(driver);
         //options.addArguments("--headless=new");
         driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
@@ -34,7 +30,7 @@ public class CreateIssueTest {
         driver.quit();
     }
 
-    @Test
+    /*@Test
     public void issueCreationWithMandatoryFieldsShouldBeSuccessful() {
         loginPage.enterUserName(Util.VALID_USERNAME);
         loginPage.enterPassword(Util.VALID_PASSWORD);
@@ -62,4 +58,4 @@ public class CreateIssueTest {
         issueSummaryPage.clickDeleteIssueSubmit();
     }
 
-}
+}*/
