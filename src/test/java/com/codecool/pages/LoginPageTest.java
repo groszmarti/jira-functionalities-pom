@@ -22,13 +22,13 @@ class LoginPageTest {
         header = new Header();
         profilePage = new ProfilePage();
         driver = WebDriverManager.getInstance().getDriver();
-        driver.get(GlobalVariables.BASE_URL + "/secure/Dashboard.jspa");
+        driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
         driver.manage().window().maximize();
     }
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        WebDriverManager.quitDriver();
     }
 
 
@@ -46,6 +46,7 @@ class LoginPageTest {
         String expectedErrorMessage = "Sorry, your username and password are incorrect";
         Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
     }
+
     @Test
     public void unsuccessfulLoginShouldntWorkWithEmptyPassword() {
         loginPage.login(GlobalVariables.VALID_USERNAME, "");

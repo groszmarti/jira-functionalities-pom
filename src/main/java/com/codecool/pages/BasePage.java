@@ -12,21 +12,22 @@ import java.time.Duration;
 public abstract class BasePage {
     protected WebDriverWait wait;
     private WebDriver driver;
-    private WebDriverManager driverManager;
 
     public BasePage() {
-        this.driverManager = driverManager.getInstance();
+        WebDriverManager driverManager = WebDriverManager.getInstance();
         this.driver = driverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
+        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        PageFactory.initElements(this.driver, this);
     }
 
     public WebDriverWait getWait() {
         return wait;
     }
+
     public void quitDriver() {
-        driverManager.quitDriver();
+        WebDriverManager.quitDriver();
     }
+
     public void waitAndClick(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();

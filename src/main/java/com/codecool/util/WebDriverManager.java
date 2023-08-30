@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebDriverManager {
     private static WebDriverManager instance;
-    private WebDriver driver;
+    private static WebDriver driver;
 
     private WebDriverManager() {
         driver = new ChromeDriver();
@@ -26,10 +26,10 @@ public class WebDriverManager {
         return driver;
     }
 
-    public void quitDriver() {
+    public static void quitDriver() {
         if (driver != null) {
-            driver.quit();
-            driver = null;
+            driver.close();
+            driver = new ChromeDriver();
         }
     }
 }
