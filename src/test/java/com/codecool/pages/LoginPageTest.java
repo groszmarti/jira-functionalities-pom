@@ -2,16 +2,11 @@ package com.codecool.pages;
 
 import com.codecool.util.GlobalVariables;
 import com.codecool.util.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 class LoginPageTest {
-    private WebDriver driver;
+    private static WebDriver driver;
     private LoginPage loginPage;
     private ProfilePage profilePage;
     private Header header;
@@ -21,21 +16,22 @@ class LoginPageTest {
         loginPage = new LoginPage();
         header = new Header();
         profilePage = new ProfilePage();
-        driver = WebDriverManager.getInstance().getDriver();
+        driver = WebDriverManager.getInstance();
         driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
         driver.manage().window().maximize();
     }
 
-    @AfterEach
-    void tearDown() {
-        WebDriverManager.quitDriver();
+    @AfterAll
+    static void tearDown() {
+        driver.quit();
     }
 
-
     @Test
+
     public void successfulLoginWorkWithValidData() {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.navigateToProfilePage();
+        assert GlobalVariables.VALID_USERNAME != null;
         Assertions.assertTrue(profilePage.getProfileUserName().contains(GlobalVariables.VALID_USERNAME));
         profilePage.logOut();
     }

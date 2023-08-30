@@ -2,34 +2,26 @@ package com.codecool.util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverManager {
-    private static WebDriverManager instance;
     private static WebDriver driver;
 
     private WebDriverManager() {
-        driver = new ChromeDriver();
     }
 
-    public static WebDriverManager getInstance() {
-        if (instance == null) {
-            synchronized (WebDriverManager.class) {
-                if (instance == null) {
-                    instance = new WebDriverManager();
-                }
-            }
+    public static WebDriver getInstance() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        if (driver == null) {
+            driver = new ChromeDriver(options);
         }
-        return instance;
+        return driver;
+//        return driver == null ? driver = new ChromeDriver() : driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.close();
-            driver = new ChromeDriver();
-        }
+        driver.quit();
     }
 }
