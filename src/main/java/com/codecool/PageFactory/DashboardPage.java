@@ -1,6 +1,5 @@
 package com.codecool.PageFactory;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +34,7 @@ public class DashboardPage {
     @FindBy(xpath = "//input[@id='summary']")
     WebElement projectSummary;
     @FindBy(xpath = "//input[@id='create-issue-submit']")
-    WebElement createissueSubmitBtn;
+    WebElement createIssueSubmitBtn;
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/a")
     WebElement popupWindow;
 
@@ -66,12 +65,16 @@ public class DashboardPage {
     public void enterTextToProjectInputField(String text) {
         projectInputField.sendKeys(text);
     }
+    public void clearProjectSummary() {
+        projectSummary.clear();
+    }
     public void enterTextToProjectSummary(String text) {
         wait.until(ExpectedConditions.visibilityOf(projectSummary));
+        projectSummary.clear();
         projectSummary.sendKeys(text);
     }
     public void clickCreateIssueSubmitBtn() {
-        createissueSubmitBtn.click();
+        createIssueSubmitBtn.click();
     }
     public void clickPopupWindow() {
         wait.until(ExpectedConditions.visibilityOf(popupWindow));

@@ -49,6 +49,7 @@ public class CreateIssueTest {
         Assertions.assertEquals(expected,dashboardPage.getCreateIssueFormHeaderText());
 
         dashboardPage.enterTextToProjectInputField("MTP");
+        dashboardPage.clearProjectSummary();
         dashboardPage.enterTextToProjectSummary("Create new test issue");
         dashboardPage.clickCreateIssueSubmitBtn();
 
