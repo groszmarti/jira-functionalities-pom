@@ -30,7 +30,7 @@ class LoginPageTest {
     public void successfulLoginWorkWithValidData() {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.navigateToProfilePage();
-        assert GlobalVariables.VALID_USERNAME != null; //?
+        assert GlobalVariables.VALID_USERNAME != null;
         Assertions.assertTrue(profilePage.getProfileUserName().contains(GlobalVariables.VALID_USERNAME));
         profilePage.logOut();
     }

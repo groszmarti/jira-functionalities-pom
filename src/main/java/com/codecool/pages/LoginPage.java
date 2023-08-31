@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='usernameerror']/p")
     private WebElement loginError;
     @FindBy(xpath = "//div[@id='content']//p")
-    WebElement loginMessage;
+    private WebElement loginMessage;
 
     public LoginPage() {
         super();

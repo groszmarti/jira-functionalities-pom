@@ -1,26 +1,21 @@
 package com.codecool.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class IssueSummaryPage extends BasePage{
     @FindBy(xpath = "//*[@id='key-val']")
-    WebElement projectId;
+    private WebElement projectId;
     @FindBy(xpath = "//*[@id='opsbar-operations_more']")
-    WebElement moreBtn;
+    private WebElement moreBtn;
     @FindBy(xpath = "//*[@id='delete-issue']")
-    WebElement deleteIssueMenuItem;
+    private WebElement deleteIssueMenuItem;
     @FindBy(xpath = "//*[@id='delete-issue-submit']")
-    WebElement deleteIssueSubmit;
+    private WebElement deleteIssueSubmit;
     @FindBy(xpath = "//*[@id='delete-issue-dialog']/h2")
-    WebElement deleteIssueDialogue;
+    private WebElement deleteIssueDialogue;
     @FindBy(xpath = "//div[@class='aui-message closeable aui-message-success aui-will-close']")
-    WebElement deletePopupConfirmation;
+    private WebElement deletePopupConfirmation;
 
     public IssueSummaryPage() {
         super();
@@ -43,11 +38,5 @@ public class IssueSummaryPage extends BasePage{
         clickMoreBtn();
         clickDeleteissue();
         clickDeleteIssueSubmit();
-    }
-    public String getDeleteIssueDialogueText() {
-        return deleteIssueDialogue.getText();
-    }
-    public String getDeletePopupText() {
-        return deletePopupConfirmation.getText();
     }
 }

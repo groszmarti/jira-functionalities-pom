@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LogoutPage extends BasePage{
     @FindBy(xpath = "//div[@id='content']//p")
-    WebElement logoutMessage;
+    private WebElement logoutMessage;
 
 
     public LogoutPage() {
