@@ -1,5 +1,7 @@
 package com.codecool.pages;
 
+import com.codecool.util.GlobalVariables;
+import com.codecool.util.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -17,6 +19,7 @@ public abstract class BasePage {
     public BasePage() {
         this.driver = getInstance();
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+
         PageFactory.initElements(this.driver, this);
     }
 
@@ -24,4 +27,18 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
+
+    public void setDriver(String uniqueUrl) {
+        driver.get(GlobalVariables.BASE_URL + uniqueUrl);
+        driver.manage().window().maximize();
+    }
+
+    public void quitDriver() {
+        WebDriverManager.quitDriver();
+    }
+
+    public void driverRefresh() {
+        driver.navigate().refresh();
+    }
+
 }
