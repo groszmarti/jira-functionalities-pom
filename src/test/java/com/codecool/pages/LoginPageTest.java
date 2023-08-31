@@ -21,9 +21,9 @@ class LoginPageTest {
         driver.manage().window().maximize();
     }
 
-    @AfterAll
-    static void tearDown() {
-        driver.quit();
+    @AfterEach
+    void tearDown() {
+        WebDriverManager.quitDriver();
     }
 
     @Test

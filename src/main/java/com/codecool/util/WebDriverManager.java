@@ -23,5 +23,6 @@ public class WebDriverManager {
 
     public static void quitDriver() {
         driver.quit();
+        driver = null;
     }
 }
