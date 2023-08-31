@@ -30,14 +30,14 @@ public class CreateIssueTest {
     }
 
     @Test
-    public void issueCreationWithMandatoryFieldsShouldBeSuccessful() {
+    public void issueCreationWithMandatoryFieldsShouldBeSuccessful() throws InterruptedException {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
         createIssueDialogue.isCreateIssueDialogueVisible();
         String expected = "Create Issue";
         Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
         String id = "summary";
-        String projectKey = "MTP";
+        String projectKey = "Main";
         String summaryText = "Create new test issue";
         createIssueDialogue.fillCreateIssueDialogue(id, projectKey,summaryText);
 
