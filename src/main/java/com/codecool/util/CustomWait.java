@@ -1,5 +1,6 @@
 package com.codecool.util;
 
+import org.checkerframework.checker.units.qual.K;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +21,7 @@ public class CustomWait {
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(elementId));
             element.click();
             element.sendKeys(input);
+            element.sendKeys(Keys.ENTER);
         } catch (TimeoutException e) {
             By elementId = By.id(id);
             wait.until(ExpectedConditions.elementToBeClickable(elementId)).sendKeys(input);
@@ -32,6 +34,10 @@ public class CustomWait {
             By elementId = By.id(id);
             wait.until(ExpectedConditions.elementToBeClickable(elementId)).sendKeys(input);
             System.out.println("Stale element exception occurred.");
+        } catch (NoSuchElementException e) {
+            By elementId = By.id(id);
+            wait.until(ExpectedConditions.elementToBeClickable(elementId)).sendKeys(input);
+            System.out.println("No such element exception occurred.");
         }
     }
 }

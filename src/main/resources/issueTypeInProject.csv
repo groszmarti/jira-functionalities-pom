@@ -1,0 +1,13 @@
+projectKey,issueTypeId,issueTypeText
+TOUCAN,issuetype-field,Sub-task
+TOUCAN,issuetype-field,Bug
+TOUCAN,issuetype-field,Task
+TOUCAN,issuetype-field,Story
+COALA,issuetype-field,Bug
+COALA,issuetype-field,Task
+COALA,issuetype-field,Story
+COALA,issuetype-field,Sub-task
+JETI,issuetype-field,Bug
+JETI,issuetype-field,Task
+JETI,issuetype-field,Story
+JETI,issuetype-field,Sub-task
