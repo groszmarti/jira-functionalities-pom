@@ -1,13 +1,12 @@
 package com.codecool.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import com.codecool.util.CustomWait;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreateIssueDialogue extends BasePage {
+    private CustomWait customWait;
     @FindBy(xpath = "//section[@id='create-issue-dialog']")
     WebElement createIssueForm;
     @FindBy (xpath = "//section[@id='create-issue-dialog']//h2")
@@ -19,8 +18,10 @@ public class CreateIssueDialogue extends BasePage {
     @FindBy(xpath = "//*[@id='create-issue-submit']")
     WebElement createIssueSubmitBtn;
 
+
     public CreateIssueDialogue() {
         super();
+        this.customWait = new CustomWait();
     }
 
     public void isCreateIssueDialogueVisible() {
@@ -44,26 +45,9 @@ public class CreateIssueDialogue extends BasePage {
         createIssueSubmitBtn.click();
     }
 
-    public void fillCreateIssueDialogue(String projectKey, String summary) {
-
+    public void fillCreateIssueDialogue(String id, String projectKey, String summaryText) {
         enterTextToProjectInputField(projectKey);
-
-        try {
-            By summaryProject = By.id("summary");
-            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(summaryProject));
-            element.click();
-
-
-        } catch (TimeoutException e) {
-            By summaryProject = By.id("summary");
-            wait.until(ExpectedConditions.elementToBeClickable(summaryProject)).sendKeys(summary);
-            System.out.println("Timeout occurred while waiting for element.");
-        } catch (StaleElementReferenceException e) {
-            By summaryProject = By.id("summary");
-            wait.until(ExpectedConditions.elementToBeClickable(summaryProject)).sendKeys(summary);
-            System.out.println("Stale element exception occurred.");
-        }
-
+        customWait.waitForElementToBeInteractable(id,summaryText);
         waitAndClick(createIssueSubmitBtn);
     }
 

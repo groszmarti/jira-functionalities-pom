@@ -29,14 +29,20 @@ public class IssueSummaryPage extends BasePage{
     public String getprojectId() {
         return projectId.getText();
     }
-    public void clickMoreBtn() {
+    private void clickMoreBtn() {
         moreBtn.click();
     }
-    public void clickDeleteissue() {
+    private void clickDeleteissue() {
         deleteIssueMenuItem.click();
     }
-    public void clickDeleteIssueSubmit() {
-        deleteIssueSubmit.click();
+    private void clickDeleteIssueSubmit() {
+        waitAndClick(deleteIssueSubmit);
+    }
+
+    public void doDeleteIssue() {
+        clickMoreBtn();
+        clickDeleteissue();
+        clickDeleteIssueSubmit();
     }
     public String getDeleteIssueDialogueText() {
         return deleteIssueDialogue.getText();
