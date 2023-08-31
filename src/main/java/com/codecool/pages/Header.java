@@ -15,27 +15,19 @@ public class Header extends BasePage{
     @FindBy(xpath = "//*[@id='log_out']")
     private WebElement logoutMenuItem;
     @FindBy (xpath = "//a[@id='create_link']")
-    WebElement createBtn;
+    private WebElement createBtn;
 
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/a")
-    WebElement popupWindow;
+    private WebElement popupWindow;
 
 
     public Header() {
         super();
     }
 
-    public WebElement getAvatarIcon() {
-        return avatarIcon;
-    }
-
-    public String getAvatarParentDataUsername() {
-        return avatarParent.getAttribute("data-username");
-    }
     public void clickCreateBtn() {
         waitAndClick(createBtn);
     }
-
 
     public void clickPopupWindow() {
         wait.until(ExpectedConditions.visibilityOf(popupWindow));
@@ -61,13 +53,8 @@ public class Header extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(logoutMenuItem));
         logoutMenuItem.click();
     }
-
     public void isAvatarVisible() {
         wait.until(ExpectedConditions.visibilityOf(avatarIcon));
-    }
-
-    public String getLoggedUserName() {
-        return avatarParent.getAttribute("data-username");
     }
 
     public void navigateToProfilePage() {

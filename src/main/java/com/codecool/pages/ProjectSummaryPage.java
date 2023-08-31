@@ -5,9 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProjectSummaryPage extends BasePage {
-      @FindBy(xpath = "/html//section[@id='summary-body']//dl/dd[2]")
-    ////dd[normalize-space()='MTP']
-    WebElement projectKey;
+    @FindBy(xpath = "//section[@id='summary-body']//dt[contains(@class, 'project-meta-label') and text()='Key']/following-sibling::dd")
+    private WebElement projectKey;
 
     public ProjectSummaryPage() {
         super();

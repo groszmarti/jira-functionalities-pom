@@ -49,23 +49,4 @@ public class CreateIssueTest {
         issueSummaryPage.doDeleteIssue();
     }
 
-   /* @Test
-    public void issueCreationWithoutMandatoryFieldsShouldNotBeSuccessful(){
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
-        header.clickCreateBtn();
-        createIssueDialogue.isCreateIssueDialogueVisible();
-        String expected = "Create Issue";
-        Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
-        String id = "summary";
-        String projectKey = "MTP";
-        String summaryText = "";
-        createIssueDialogue.fillCreateIssueDialogue(id, projectKey,summaryText);
-
-        String actualProjectId = issueSummaryPage.getprojectId();
-        Assertions.assertTrue(popupWindowText.contains(actualProjectId));
-
-        issueSummaryPage.doDeleteIssue();
-    }*/
-
-
 }

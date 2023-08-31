@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class CustomWait {
 
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     public CustomWait() {
         this.wait = new WebDriverWait(WebDriverManager.getInstance(), Duration.ofSeconds(10));
