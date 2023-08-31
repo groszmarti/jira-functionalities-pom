@@ -1,61 +1,52 @@
-/*package com.codecool.pages;
+package com.codecool.pages;
 
+import com.codecool.util.GlobalVariables;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.junit.jupiter.api.Test;
 
 public class CreateIssueTest {
-    private WebDriver driver;
     private LoginPage loginPage;
-    private Header dashboardPage;
+    private Header header;
     private IssueSummaryPage issueSummaryPage;
+    private CreateIssueDialogue createIssueDialogue;
+    private String loginUrl;
 
     @BeforeEach
     void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        driver = new ChromeDriver(options);
-        loginPage = new LoginPage(driver);
-        dashboardPage = new Header(driver);
-        issueSummaryPage = new IssueSummaryPage(driver);
-        //options.addArguments("--headless=new");
-        driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
-        driver.manage().window().maximize();
+        loginUrl ="/secure/Dashboard.jspa";
+        loginPage = new LoginPage();
+        header = new Header();
+        issueSummaryPage = new IssueSummaryPage();
+        createIssueDialogue = new CreateIssueDialogue();
+        loginPage.setDriver(loginUrl);
+
     }
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        issueSummaryPage.quitDriver();
     }
 
-    /*@Test
+    @Test
     public void issueCreationWithMandatoryFieldsShouldBeSuccessful() {
-        loginPage.enterUserName(Util.VALID_USERNAME);
-        loginPage.enterPassword(Util.VALID_PASSWORD);
-        loginPage.clickLoginBtn();
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        dashboardPage.isAvatarVisible();
-
-        dashboardPage.clickCreateBtn();
-        dashboardPage.isCreateIssueFormVisible();
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
+        header.clickCreateBtn();
+        createIssueDialogue.isCreateIssueDialogueVisible();
         String expected = "Create Issue";
-        Assertions.assertEquals(expected,dashboardPage.getCreateIssueFormHeaderText());
+        Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
 
-        dashboardPage.enterTextToProjectInputField("MTP");
-        dashboardPage.clearProjectSummary();
-        dashboardPage.enterTextToProjectSummary("Create new test issue");
-        dashboardPage.clickCreateIssueSubmitBtn();
+        createIssueDialogue.fillCreateIssueDialogue("MTP", "Create new test issue");
 
-        dashboardPage.clickPopupWindow();
-        String actualProjectId = issueSummaryPage.getprojectId();
-        Assertions.assertTrue(dashboardPage.getPopupText().contains(actualProjectId));
-
-        issueSummaryPage.clickMoreBtn();
-        issueSummaryPage.clickDeleteissue();
-        issueSummaryPage.clickDeleteIssueSubmit();
+//
+//        header.clickPopupWindow();
+//        String actualProjectId = issueSummaryPage.getprojectId();
+//        Assertions.assertTrue(header.getPopupText().contains(actualProjectId));
+//
+//        issueSummaryPage.clickMoreBtn();
+//        issueSummaryPage.clickDeleteissue();
+//        issueSummaryPage.clickDeleteIssueSubmit();
     }
 
-}*/
+}

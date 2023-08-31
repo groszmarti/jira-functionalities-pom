@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class IssueSummaryPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class IssueSummaryPage extends BasePage{
     @FindBy(xpath = "//*[@id='key-val']")
     WebElement projectId;
     @FindBy(xpath = "//*[@id='opsbar-operations_more']")
@@ -24,10 +22,8 @@ public class IssueSummaryPage {
     @FindBy(xpath = "//div[@class='aui-message closeable aui-message-success aui-will-close']")
     WebElement deletePopupConfirmation;
 
-    public IssueSummaryPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
+    public IssueSummaryPage() {
+        super();
     }
 
     public String getprojectId() {
