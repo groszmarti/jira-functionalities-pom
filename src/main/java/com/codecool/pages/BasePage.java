@@ -41,4 +41,8 @@ public abstract class BasePage {
         driver.navigate().refresh();
     }
 
+    public void navigateTo(String uniqueUrl){
+        driver.navigate().to(uniqueUrl);
+    }
+
 }
