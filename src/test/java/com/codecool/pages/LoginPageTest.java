@@ -6,24 +6,23 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
 class LoginPageTest {
-    private static WebDriver driver;
-    private LoginPage loginPage;
+    private static LoginPage loginPage;
     private ProfilePage profilePage;
     private Header header;
+    private String uniqueUrl;
 
     @BeforeEach
     void setUp() {
+        uniqueUrl = "/secure/Dashboard.jspa";
         loginPage = new LoginPage();
         header = new Header();
         profilePage = new ProfilePage();
-        driver = WebDriverManager.getInstance();
-        driver.get("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
-        driver.manage().window().maximize();
+        loginPage.setDriver(uniqueUrl);
     }
 
     @AfterEach
     void tearDown() {
-        WebDriverManager.quitDriver();
+        loginPage.quitDriver();
     }
 
     @Test
@@ -31,48 +30,47 @@ class LoginPageTest {
     public void successfulLoginWorkWithValidData() {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.navigateToProfilePage();
-        assert GlobalVariables.VALID_USERNAME != null;
+        assert GlobalVariables.VALID_USERNAME != null; //?
         Assertions.assertTrue(profilePage.getProfileUserName().contains(GlobalVariables.VALID_USERNAME));
         profilePage.logOut();
     }
 
     @Test
-    public void unsuccessfulLoginShouldntWorkWithEmptyInputFields() {
+    public void unsuccessfulLoginShouldNotWorkWithEmptyInputFields() {
         loginPage.login("", "");
         String expectedErrorMessage = "Sorry, your username and password are incorrect";
         Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
     }
 
     @Test
-    public void unsuccessfulLoginShouldntWorkWithEmptyPassword() {
+    public void unsuccessfulLoginShouldNotWorkWithEmptyPassword() {
         loginPage.login(GlobalVariables.VALID_USERNAME, "");
         String expectedErrorMessage = "Sorry, your username and password are incorrect";
         Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
     }
 
     @Test
-    public void unsuccessfulLoginShouldntWorkWithInvalidPassword() {
+    public void unsuccessfulLoginShouldNotWorkWithInvalidPassword() {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
         String expectedErrorMessage = "Sorry, your username and password are incorrect";
         Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
     }
 
     @Test
-    public void unsuccessfulLoginShouldntWorkWithInvalidUsername() {
+    public void unsuccessfulLoginShouldNotWorkWithInvalidUsername() {
         loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
         String expectedErrorMessage = "Sorry, your username and password are incorrect";
         Assertions.assertTrue(loginPage.getLoginErrorMessage().contains(expectedErrorMessage));
     }
 
-    //refactor!!!!
     @Test
     public void captchaAppearsAfter3UnsuccessfulLogin() {
         loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
-        driver.navigate().refresh();
+        loginPage.driverRefresh();
         loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
-        driver.navigate().refresh();
+        loginPage.driverRefresh();
         loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
         Assertions.assertTrue(loginPage.isCaptchaVisible());
