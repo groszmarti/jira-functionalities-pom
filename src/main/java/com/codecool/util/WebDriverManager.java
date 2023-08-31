@@ -12,7 +12,7 @@ public class WebDriverManager {
 
     public static WebDriver getInstance() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        //options.addArguments("--headless=new");
         return driver == null ? driver = new ChromeDriver(options) : driver;
     }
 

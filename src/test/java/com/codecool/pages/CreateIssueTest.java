@@ -36,17 +36,36 @@ public class CreateIssueTest {
         createIssueDialogue.isCreateIssueDialogueVisible();
         String expected = "Create Issue";
         Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
+        String id = "summary";
+        String projectKey = "MTP";
+        String summaryText = "Create new test issue";
+        createIssueDialogue.fillCreateIssueDialogue(id, projectKey,summaryText);
 
-        createIssueDialogue.fillCreateIssueDialogue("MTP", "Create new test issue");
+        String popupWindowText = header.getPopupText();
+        header.clickPopupWindow();
+        String actualProjectId = issueSummaryPage.getprojectId();
+        Assertions.assertTrue(popupWindowText.contains(actualProjectId));
 
-//
-//        header.clickPopupWindow();
-//        String actualProjectId = issueSummaryPage.getprojectId();
-//        Assertions.assertTrue(header.getPopupText().contains(actualProjectId));
-//
-//        issueSummaryPage.clickMoreBtn();
-//        issueSummaryPage.clickDeleteissue();
-//        issueSummaryPage.clickDeleteIssueSubmit();
+        issueSummaryPage.doDeleteIssue();
     }
+
+   /* @Test
+    public void issueCreationWithoutMandatoryFieldsShouldNotBeSuccessful(){
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
+        header.clickCreateBtn();
+        createIssueDialogue.isCreateIssueDialogueVisible();
+        String expected = "Create Issue";
+        Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
+        String id = "summary";
+        String projectKey = "MTP";
+        String summaryText = "";
+        createIssueDialogue.fillCreateIssueDialogue(id, projectKey,summaryText);
+
+        String actualProjectId = issueSummaryPage.getprojectId();
+        Assertions.assertTrue(popupWindowText.contains(actualProjectId));
+
+        issueSummaryPage.doDeleteIssue();
+    }*/
+
 
 }
