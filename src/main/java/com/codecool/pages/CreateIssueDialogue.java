@@ -17,6 +17,8 @@ public class CreateIssueDialogue extends BasePage {
     private WebElement projectSummary;
     @FindBy(xpath = "//*[@id='create-issue-submit']")
     private WebElement createIssueSubmitBtn;
+    @FindBy(xpath = "//button[text()='Cancel']")
+    private WebElement createIssueCancelBtn;
 
 
     public CreateIssueDialogue() {
@@ -47,4 +49,7 @@ public class CreateIssueDialogue extends BasePage {
         waitAndClick(createIssueSubmitBtn);
     }
 
+    public void cancelCreateIssueDialogue() {
+        waitAndClick(createIssueCancelBtn);
+    }
 }

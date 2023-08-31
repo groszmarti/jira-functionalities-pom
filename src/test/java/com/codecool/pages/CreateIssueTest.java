@@ -41,6 +41,8 @@ public class CreateIssueTest {
         String summaryText = "Create new test issue";
         createIssueDialogue.fillCreateIssueDialogue(id, projectKey,summaryText);
 
+        Assertions.assertTrue(header.isCreateIssueFormNotPresent());
+
         String popupWindowText = header.getPopupText();
         header.clickPopupWindow();
         String actualProjectId = issueSummaryPage.getprojectId();
@@ -49,4 +51,13 @@ public class CreateIssueTest {
         issueSummaryPage.doDeleteIssue();
     }
 
+    @Test
+    public void successfulCancelIssueCreation() {
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
+        header.clickCreateBtn();
+        createIssueDialogue.isCreateIssueDialogueVisible();
+        createIssueDialogue.cancelCreateIssueDialogue();
+        //validate the createIssueForm disappear
+        Assertions.assertFalse(header.isCreateIssueFormNotPresent());
+    }
 }

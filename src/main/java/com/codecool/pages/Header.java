@@ -1,8 +1,14 @@
 package com.codecool.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class Header extends BasePage{
 
@@ -16,10 +22,13 @@ public class Header extends BasePage{
     private WebElement logoutMenuItem;
     @FindBy (xpath = "//a[@id='create_link']")
     private WebElement createBtn;
-
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/a")
     private WebElement popupWindow;
 
+    @FindAll ({
+        @FindBy(xpath = "//section[@id='create-issue-dialog']")
+    })
+    private List<WebElement> createIssueForm;
 
     public Header() {
         super();
@@ -60,5 +69,12 @@ public class Header extends BasePage{
     public void navigateToProfilePage() {
         clickAvatarIcon();
         clickProfileMenuItem();
+    }
+
+    public boolean isCreateIssueFormNotPresent() {
+        if(!createIssueForm.isEmpty()){
+            return true;
+        }
+        return false;
     }
 }
