@@ -49,8 +49,8 @@ public class LoginPage extends BasePage {
         return loginError.getText();
     }
 
-    public boolean isCaptchaVisible() {
-        wait.until(ExpectedConditions.visibilityOf(captcha));
+    public boolean isCaptchaInteractable() {
+        wait.until(ExpectedConditions.elementToBeClickable(captcha));
         return captcha.isDisplayed();
     }
 }

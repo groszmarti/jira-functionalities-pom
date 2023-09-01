@@ -1,9 +1,7 @@
 package com.codecool.pages;
 
 import com.codecool.util.GlobalVariables;
-import com.codecool.util.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
 
 class LoginPageTest {
     private static LoginPage loginPage;
@@ -65,14 +63,14 @@ class LoginPageTest {
 
     @Test
     public void captchaAppearsAfter3UnsuccessfulLogin() {
-        loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
         loginPage.driverRefresh();
-        loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
         loginPage.driverRefresh();
-        loginPage.login(GlobalVariables.INVALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.INVALID_PASSWORD);
 
-        Assertions.assertTrue(loginPage.isCaptchaVisible());
+        Assertions.assertTrue(loginPage.isCaptchaInteractable());
     }
 }
