@@ -32,7 +32,7 @@ public class CreateIssueTest {
     }
 
     @Test
-    public void issueCreationWithMandatoryFieldsShouldBeSuccessful() {
+    public void issueCreationWithMandatoryFieldsShouldBeSuccessful() throws InterruptedException {
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
         createIssueDialogue.isCreateIssueDialogueVisible();
@@ -75,6 +75,7 @@ public class CreateIssueTest {
 
         createIssueDialogue.cancelCreateIssueDialogue();
     }
+  
     @Test
     public void successfulCancelIssueCreation(){
         loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
