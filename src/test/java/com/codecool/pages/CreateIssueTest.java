@@ -86,6 +86,7 @@ public class CreateIssueTest {
 
     }
 
+    //Its validate the inverse feature
     @ParameterizedTest
     @CsvFileSource(resources = "/issueTypeInProject.csv", numLinesToSkip = 1)
     public void validateIssueTypesNotExistInProjectsByIssueCreation(String projectKey, String issueTypeId, String issueText) {
