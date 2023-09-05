@@ -34,7 +34,7 @@ public class LogoutPageTest {
         header.clickLogoutMenuItem();
         String expectedLogoutMessage = "You are now logged out. Any automatic login has also been stopped.";
         Assertions.assertTrue(logoutPage.getLogoutMessage().contains(expectedLogoutMessage));
-        logoutPage.navigateTo(GlobalVariables.BASE_URL + ProfilePage.PROFILE_URL);
+        logoutPage.navigateTo(ProfilePage.PROFILE_URL);
         String expectedLoginErrorMessage = "You must log in to access this page";
         Assertions.assertTrue(loginPage.getLoginMessage().contains(expectedLoginErrorMessage));
     }
