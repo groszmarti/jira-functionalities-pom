@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
+    public static final String LOGIN_URL = "/secure/Dashboard.jspa";
     @FindBy(xpath = "//input[@id='login-form-username']")
     private WebElement userNameInput;
     @FindBy(xpath = "//input[@id='login-form-password']")
@@ -21,6 +22,7 @@ public class LoginPage extends BasePage {
     public LoginPage() {
         super();
     }
+
 
     private void enterUserName(String userName) {
         userNameInput.sendKeys(userName);

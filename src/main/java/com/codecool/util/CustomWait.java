@@ -1,6 +1,5 @@
 package com.codecool.util;
 
-import org.checkerframework.checker.units.qual.K;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,7 +14,7 @@ public class CustomWait {
         this.wait = new WebDriverWait(WebDriverManager.getInstance(), Duration.ofSeconds(10));
     }
 
-    public void waitForElementToBeInteractable(String id, String input) {
+    public void waitForElementToBeInteractableAndSendKeys(String id, String input) {
         try {
             By elementId = By.id(id);
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(elementId));

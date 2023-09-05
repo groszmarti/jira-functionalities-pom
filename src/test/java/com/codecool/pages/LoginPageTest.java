@@ -7,15 +7,14 @@ class LoginPageTest {
     private static LoginPage loginPage;
     private ProfilePage profilePage;
     private Header header;
-    private String uniqueUrl;
+
 
     @BeforeEach
     void setUp() {
-        uniqueUrl = "/secure/Dashboard.jspa";
         loginPage = new LoginPage();
         header = new Header();
         profilePage = new ProfilePage();
-        loginPage.setDriver(uniqueUrl);
+        loginPage.navigateTo(LoginPage.LOGIN_URL);
     }
 
     @AfterEach
@@ -30,7 +29,6 @@ class LoginPageTest {
         header.navigateToProfilePage();
         assert GlobalVariables.VALID_USERNAME != null;
         Assertions.assertTrue(profilePage.getProfileUserName().contains(GlobalVariables.VALID_USERNAME));
-        profilePage.logOut();
     }
 
     @Test

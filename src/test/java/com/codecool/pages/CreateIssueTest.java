@@ -5,24 +5,21 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class CreateIssueTest {
     private LoginPage loginPage;
     private Header header;
     private IssueSummaryPage issueSummaryPage;
     private CreateIssueDialogue createIssueDialogue;
-    private String loginUrl;
+
 
     @BeforeEach
     void setUp() {
-        loginUrl ="/secure/Dashboard.jspa";
         loginPage = new LoginPage();
         header = new Header();
         issueSummaryPage = new IssueSummaryPage();
         createIssueDialogue = new CreateIssueDialogue();
-        loginPage.setDriver(loginUrl);
+        loginPage.navigateTo(LoginPage.LOGIN_URL);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
 
     }
 
@@ -33,9 +30,7 @@ public class CreateIssueTest {
 
     @Test
     public void issueCreationWithMandatoryFieldsShouldBeSuccessful() throws InterruptedException {
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
-        createIssueDialogue.isCreateIssueDialogueVisible();
         String expected = "Create Issue";
         Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
         String summaryId = "summary";
@@ -43,7 +38,10 @@ public class CreateIssueTest {
         String projectKey = "Main";
         String summaryText = "Create new test issue";
         String issueType = "Task";
-        createIssueDialogue.fillCreateIssueDialogue(projectKey, issueTypeId, issueType, summaryId, summaryText);
+        createIssueDialogue.setProjectKey(projectKey);
+        createIssueDialogue.setIssueTypeText(issueTypeId, issueType);
+        createIssueDialogue.setSummaryText(summaryId, summaryText);
+        createIssueDialogue.clickCreatIssueSubmitBtn();
 
         Assertions.assertTrue(header.isCreateIssueFormNotPresented());
 
@@ -57,17 +55,15 @@ public class CreateIssueTest {
 
     @Test
     public void unsuccessfulIssueCreationWithoutSummaryMandatoryField() {
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
-        createIssueDialogue.isCreateIssueDialogueVisible();
         String expected = "Create Issue";
         Assertions.assertEquals(expected,createIssueDialogue.getCreateIssueDialogueHeaderText());
-        String summaryId = "summary";
         String issueTypeId = "issuetype-field";
         String projectKey = "Main";
-        String summaryText = "";
         String issueType = "Bug";
-        createIssueDialogue.fillCreateIssueDialogue(projectKey, issueTypeId, issueType, summaryId, summaryText);
+        createIssueDialogue.setProjectKey(projectKey);
+        createIssueDialogue.setIssueTypeText(issueTypeId, issueType);
+        createIssueDialogue.clickCreatIssueSubmitBtn();
 
         String errorMessage = createIssueDialogue.getErrorMessage();
         String expectedErrorMessage = "You must specify a summary of the issue.";
@@ -78,9 +74,8 @@ public class CreateIssueTest {
   
     @Test
     public void successfulCancelIssueCreation(){
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
-        createIssueDialogue.isCreateIssueDialogueVisible();
+        createIssueDialogue.waitForCreateIssueDialogueHeaderText();
         createIssueDialogue.cancelCreateIssueDialogue();
         //validate the createIssueForm disappear
         Assertions.assertFalse(header.isCreateIssueFormNotPresented());
@@ -91,10 +86,11 @@ public class CreateIssueTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/issueTypeInProject.csv", numLinesToSkip = 1)
     public void validateIssueTypesNotExistInProjectsByIssueCreation(String projectKey, String issueTypeId, String issueText) {
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.clickCreateBtn();
-        createIssueDialogue.isCreateIssueDialogueVisible();
-        createIssueDialogue.fillCreateIssueDialogueWithoutSummaryAndSubmit(projectKey, issueTypeId, issueText);
+        createIssueDialogue.waitForCreateIssueDialogueHeaderText();
+//        createIssueDialogue.fillCreateIssueDialogueWithoutSummaryAndSubmit(projectKey, issueTypeId, issueText);
+        createIssueDialogue.setProjectKey(projectKey);
+        createIssueDialogue.setIssueTypeText(issueTypeId, issueText);
         Assertions.assertTrue(createIssueDialogue.IsNoMatchesTextInOptions());
     }
 
