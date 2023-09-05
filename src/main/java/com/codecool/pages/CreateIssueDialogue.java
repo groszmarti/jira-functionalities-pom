@@ -1,7 +1,6 @@
 package com.codecool.pages;
 
 import com.codecool.util.CustomWait;
-import kotlin.reflect.KAnnotatedElement;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,11 +37,12 @@ public class CreateIssueDialogue extends BasePage {
         this.customWait = new CustomWait();
     }
 
-    public void isCreateIssueDialogueVisible() {
-        wait.until(ExpectedConditions.visibilityOf(createIssueForm));
+    public void waitForCreateIssueDialogueHeaderText() {
+        wait.until(ExpectedConditions.visibilityOf(createIssueHeader));
     }
 
     public String getCreateIssueDialogueHeaderText() {
+        waitForCreateIssueDialogueHeaderText();
         return createIssueHeader.getText();
     }
 
@@ -55,7 +55,7 @@ public class CreateIssueDialogue extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(issueType));
         issueType.clear();
         issueType.sendKeys(text);
-      //  customWait.waitForElementToBeInteractable("issuetype-field", text);
+      //  customWait.waitForElementToBeInteractableAndSendKeys("issuetype-field", text);
         issueType.sendKeys(Keys.ENTER);
     }
 
@@ -67,19 +67,30 @@ public class CreateIssueDialogue extends BasePage {
         projectSummary.clear();
         projectSummary.sendKeys(text);
     }*/
-    public void fillCreateIssueDialogue( String projectKey, String issueTypeId, String issueTypeText, String summaryId, String summaryText) {
+
+    public void setProjectKey( String projectKey) {
         enterTextToProjectInputField(projectKey);
-        customWait.waitForElementToBeInteractable(issueTypeId,issueTypeText);
-        customWait.waitForElementToBeInteractable(summaryId,summaryText);
+    }
+
+    public void setIssueTypeText( String issueTypeId, String issueTypeText) {
+        customWait.waitForElementToBeInteractableAndSendKeys(issueTypeId,issueTypeText);
+    }
+
+    public void setSummaryText(String summaryId, String summaryText) {
+        customWait.waitForElementToBeInteractableAndSendKeys(summaryId,summaryText);
+    }
+
+    public void clickCreatIssueSubmitBtn(){
         waitAndClick(createIssueSubmitBtn);
     }
+
     public void cancelCreateIssueDialogue() {
         waitAndClick(createIssueCancelBtn);
     }
-    public void fillCreateIssueDialogueWithoutSummaryAndSubmit( String projectKey, String issueTypeId, String issueTypeText) {
-        enterTextToProjectInputField(projectKey);
-        customWait.waitForElementToBeInteractable(issueTypeId,issueTypeText);
-    }
+//    public void fillCreateIssueDialogueWithoutSummaryAndSubmit( String projectKey, String issueTypeId, String issueTypeText) {
+//        enterTextToProjectInputField(projectKey);
+//        customWait.waitForElementToBeInteractableAndSendKeys(issueTypeId,issueTypeText);
+//    }
     public boolean IsNoMatchesTextInOptions() {
         return !noMatchesText.isDisplayed();
     }

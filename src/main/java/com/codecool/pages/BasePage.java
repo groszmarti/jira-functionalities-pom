@@ -27,11 +27,6 @@ public abstract class BasePage {
         element.click();
     }
 
-    public void setDriver(String uniqueUrl) {
-        driver.get(GlobalVariables.BASE_URL + uniqueUrl);
-        driver.manage().window().maximize();
-    }
-
     public void quitDriver() {
         WebDriverManager.quitDriver();
     }
@@ -41,7 +36,8 @@ public abstract class BasePage {
     }
 
     public void navigateTo(String uniqueUrl){
-        driver.navigate().to(uniqueUrl);
+        driver.navigate().to(GlobalVariables.BASE_URL + uniqueUrl);
+        driver.manage().window().maximize();
     }
 
 }

@@ -11,15 +11,14 @@ public class BrowseProjectTest {
     private LoginPage loginPage;
     private Header header;
     private ProjectSummaryPage projectSummaryPage;
-    private String loginUrl;
 
     @BeforeEach
     void setUp() {
-        loginUrl = "/secure/Dashboard.jspa";
         loginPage = new LoginPage();
         header = new Header();
         projectSummaryPage = new ProjectSummaryPage();
-        loginPage.setDriver(loginUrl);
+        loginPage.navigateTo(LoginPage.LOGIN_URL);
+        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
     }
 
     @AfterEach
@@ -30,9 +29,8 @@ public class BrowseProjectTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/browseProjects.csv", numLinesToSkip = 1)
     public void validateProjectBrowsePermission(String projectUrl, String projectKey) {
-        loginPage.login(GlobalVariables.VALID_USERNAME, GlobalVariables.VALID_PASSWORD);
         header.isAvatarVisible();
-        projectSummaryPage.navigateTo(GlobalVariables.BASE_URL + projectUrl);
+        projectSummaryPage.navigateTo(projectUrl);
         String actualProjectKey = projectSummaryPage.getProjectKey();
         Assertions.assertEquals(projectKey, actualProjectKey);
     }
