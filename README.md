@@ -103,7 +103,7 @@ Katalin Szigetvári - [@Katalin Szigetvári_LinkedIn](https://www.linkedin.com/i
 Bence Bánik - [@Bence Bánik_LinkedIn](https://www.linkedin.com/in/bence-banik?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BsPTihu%2B4TIKezI%2F5ebXncQ%3D%3D)  
 Zsuzsi Végvári - [@Zsuzsi Végvári_LinkedIn](https://www.linkedin.com/in/zsuzsiv%C3%A9gv%C3%A1ri/)  
 
-Project Link: [https://github.com/CodecoolGlobal/mars-exploration-1-java-vegvarizsuzsi](https://github.com/groszmarti/jira-functionalities-pom)
+Project Link: [https://github.com/groszmarti/jira-functionalities-pom](https://github.com/groszmarti/jira-functionalities-pom)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
