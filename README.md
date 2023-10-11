@@ -5,10 +5,10 @@
 <br />
 <div align="center">
 
-![Jira logo]()
+![Jira logo](https://github.com/groszmarti/jira-functionalities-pom/blob/development/src/main/resources/Jira-Icon.png)
 
-<h2 align="center">SELENIUM TESTAUTOMATION PROJECT</h2>
-<h3 align="center">System Under Test: Jira</h3>
+<h2 align="center">Selenium Testautomation Project</h2>
+<h2 align="center">System Under Test: Jira</h2>
 </div>
 
 
@@ -50,6 +50,7 @@ It utilizes modern automation strategies including the following:
 * Page Object Model(POM)
 * Page Factory
 * Data Driven Testing
+* JUnit
 
 
 
@@ -66,10 +67,13 @@ It utilizes modern automation strategies including the following:
 ## Usage
 
 
-`Data-Driven Testing:` Modify the input data files in the data directory to specify different scenarios or user accounts for testing.  
-`Page Object Model:` If the Jira UI changes, update the relevant page objects in the pages directory without affecting the test scripts.  
-`Keywords:` Reuse the provided keywords in the keywords directory to interact with Jira components.  
-`Running Tests:` Execute the test scripts in the tests directory using your preferred test runner (e.g., pytest, JUnit). Make sure to provide the necessary data for data-driven testing.  
+`Data-Driven Testing:` We modified the input data files in the data directory to specify different scenarios or user accounts for testing.
+
+`Page Object Model:` We updated the relevant page objects in the pages directory when necessary, ensuring that changes to the Jira UI did not affect the test scripts.
+
+`Keywords:` We employed the provided keywords in the keywords directory to interact with Jira components.
+
+`Running Tests:` We executed the test scripts in the tests directory using JUnit test runner, making sure to provide the necessary data for data-driven testing.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
