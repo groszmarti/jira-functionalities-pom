@@ -43,10 +43,10 @@ This Selenium automation project is designed to test various functions of the Ji
 
 ### Built With
 
-It utilizes modern automation strategies including:
+It utilizes modern automation strategies including the following:
 
 * Selenium
-* JAVA
+* Java
 * Page Object Model(POM)
 * Page Factory
 * Data Driven Testing
@@ -66,13 +66,10 @@ It utilizes modern automation strategies including:
 ## Usage
 
 
-Data-Driven Testing: Modify the input data files in the data directory to specify different scenarios or user accounts for testing.
-
-Page Object Model: If the Jira UI changes, update the relevant page objects in the pages directory without affecting the test scripts.
-
-Keywords: Reuse the provided keywords in the keywords directory to interact with Jira components.
-
-Running Tests: Execute the test scripts in the tests directory using your preferred test runner (e.g., pytest, JUnit). Make sure to provide the necessary data for data-driven testing.
+`Data-Driven Testing:` Modify the input data files in the data directory to specify different scenarios or user accounts for testing.  
+`Page Object Model:` If the Jira UI changes, update the relevant page objects in the pages directory without affecting the test scripts.  
+`Keywords:` Reuse the provided keywords in the keywords directory to interact with Jira components.  
+`Running Tests:` Execute the test scripts in the tests directory using your preferred test runner (e.g., pytest, JUnit). Make sure to provide the necessary data for data-driven testing.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -97,9 +94,9 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Márta Grósz - [@Márta Grósz_LinkedIn]([https://www.linkedin.com/in/noemi-varga-ba021060?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BVaz10imJQ9aW7%2FCOiHT8wg%3D%3D](https://www.linkedin.com/in/marta-grosz?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BpvwIr4lkSkaV5pTt%2Flb7ZQ%3D%3D))  
-Katalin Szigetvári - [@Katalin Szigetvári_LinkedIn]([https://www.linkedin.com/in/timea-tamasi?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B54R4iAY9QGay7%2Bw%2B8F89yA%3D%3D](https://www.linkedin.com/in/katalin-szigetv%C3%A1ri-9829519a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B7GCoBuD6RLmeg24N3NdKTQ%3D%3D))  
-Bence Bánik - [@Bence Bánik_LinkedIn]([https://www.linkedin.com/in/timea-tamasi?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B54R4iAY9QGay7%2Bw%2B8F89yA%3D%3D](https://www.linkedin.com/in/bence-banik?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BNL34yUXsTDa589m8%2F89Qgw%3D%3D))
+Márta Grósz - [@Márta Grósz_LinkedIn](https://www.linkedin.com/in/marta-grosz?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BCFxF6bCmRxWeNJETDuoRqA%3D%3D)  
+Katalin Szigetvári - [@Katalin Szigetvári_LinkedIn](https://www.linkedin.com/in/katalin-szigetv%C3%A1ri-9829519a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BKXQatamTQCei6QtQATb6eQ%3D%3D)  
+Bence Bánik - [@Bence Bánik_LinkedIn](https://www.linkedin.com/in/bence-banik?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BsPTihu%2B4TIKezI%2F5ebXncQ%3D%3D)  
 Zsuzsi Végvári - [@Zsuzsi Végvári_LinkedIn](https://www.linkedin.com/in/zsuzsiv%C3%A9gv%C3%A1ri/)  
 
 Project Link: [https://github.com/CodecoolGlobal/mars-exploration-1-java-vegvarizsuzsi](https://github.com/groszmarti/jira-functionalities-pom)
