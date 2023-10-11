@@ -8,7 +8,7 @@
 ![Jira logo](https://github.com/groszmarti/jira-functionalities-pom/blob/development/src/main/resources/Jira-Icon.png)
 
 <h2 align="center">Selenium Testautomation Project</h2>
-<h2 align="center">System Under Test: Jira</h2>
+<h3 align="center">System Under Test: Jira</h3>
 </div>
 
 
