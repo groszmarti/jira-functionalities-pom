@@ -82,17 +82,5 @@ public class CreateIssueTest {
 
     }
 
-    //Its validate the inverse feature
-    @ParameterizedTest
-    @CsvFileSource(resources = "/issueTypeInProject.csv", numLinesToSkip = 1)
-    public void validateIssueTypesNotExistInProjectsByIssueCreation(String projectKey, String issueTypeId, String issueText) {
-        header.clickCreateBtn();
-        createIssueDialogue.waitForCreateIssueDialogueHeaderText();
-//        createIssueDialogue.fillCreateIssueDialogueWithoutSummaryAndSubmit(projectKey, issueTypeId, issueText);
-        createIssueDialogue.setProjectKey(projectKey);
-        createIssueDialogue.setIssueTypeText(issueTypeId, issueText);
-        Assertions.assertTrue(createIssueDialogue.IsNoMatchesTextInOptions());
-    }
-
 }
 

@@ -51,22 +51,6 @@ public class CreateIssueDialogue extends BasePage {
         projectInputField.sendKeys(text);
         projectInputField.sendKeys(Keys.ENTER);
     }
-    /*public void enterTextToIssueTypeInputField(String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(issueType));
-        issueType.clear();
-        issueType.sendKeys(text);
-      //  customWait.waitForElementToBeInteractableAndSendKeys("issuetype-field", text);
-        issueType.sendKeys(Keys.ENTER);
-    }
-
-    private void clearProjectSummary() {
-        projectSummary.clear();
-    }
-    public void enterTextToProjectSummary(String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(projectSummary));
-        projectSummary.clear();
-        projectSummary.sendKeys(text);
-    }*/
 
     public void setProjectKey( String projectKey) {
         enterTextToProjectInputField(projectKey);
@@ -87,10 +71,7 @@ public class CreateIssueDialogue extends BasePage {
     public void cancelCreateIssueDialogue() {
         waitAndClick(createIssueCancelBtn);
     }
-//    public void fillCreateIssueDialogueWithoutSummaryAndSubmit( String projectKey, String issueTypeId, String issueTypeText) {
-//        enterTextToProjectInputField(projectKey);
-//        customWait.waitForElementToBeInteractableAndSendKeys(issueTypeId,issueTypeText);
-//    }
+
     public boolean IsNoMatchesTextInOptions() {
         return !noMatchesText.isDisplayed();
     }
